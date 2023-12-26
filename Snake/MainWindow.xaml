@@ -10,7 +10,9 @@
         Foreground="{StaticResource TextColor}"
         FontFamily="{StaticResource MainFont}"
         WindowStartupLocation="CenterScreen"
-        Icon="Assets/Icon.ico"
+        Icon="Assets/icon.ico"
+        Loaded="Window_Loaded"
+        KeyDown="Window_KeyDown"        
         >
         
     <Grid>
@@ -26,17 +28,21 @@
                    FontSize="22"
                    Margin="10"
                    />
-        <Border Name="GridBorder"
+        <Border x:Name="GridBorder"
                 Grid.Row="1"
                 BorderBrush="{StaticResource GrindLineColor}"
-                BorderThickness="10"
+                BorderThickness="1.5"
                 HorizontalAlignment ="Center"
-                VerticalAlignment ="Center">
+                VerticalAlignment ="Center"
+                RenderOptions.EdgeMode="Aliased">
 
             <UniformGrid x:Name="GameGrid"
                            Width="400"
-                         Height="400"
-                         Background="{StaticResource GridBackGroundColor}"/>
+                           Height="400"
+                           Background="{StaticResource GridBackGroundColor}"
+                           SnapsToDevicePixels="True"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                         />
         </Border>
     </Grid>
 </Window>
