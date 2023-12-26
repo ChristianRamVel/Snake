@@ -7,12 +7,12 @@ namespace Snake
 {
     public static class Imagenes
     {
-        public readonly static  ContextStaticAttribute ImageSource Empty = CargarImagen("Empty.png");
-        public readonly static ContextStaticAttribute ImageSource Body = CargarImagen("Body.png");
-        public readonly static ContextStaticAttribute ImageSource Cabeza = CargarImagen("Cabeza.png");
-        public readonly static ContextStaticAttribute ImageSource Comida = CargarImagen("Comida.png");
-        public readonly static ContextStaticAttribute ImageSource DeadBody = CargarImagen("DeadBody.png");
-        public readonly static ContextStaticAttribute ImageSource DeadHead = CargarImagen("DeadHead.png");
+        public readonly static   ImageSource Empty = CargarImagen("Assets/Empty.png");
+        public readonly static ImageSource Body = CargarImagen("Assets/Body.png");
+        public readonly static  ImageSource Cabeza = CargarImagen("Assets/Head.png");
+        public readonly static  ImageSource Comida = CargarImagen("Assets/Food.png");
+        public readonly static  ImageSource DeadBody = CargarImagen("Assets/DeadBody.png");
+        public readonly static  ImageSource DeadHead = CargarImagen("Assets/DeadHead.png");
 
         private static ImageSource CargarImagen(string nombreArchivo)
         {

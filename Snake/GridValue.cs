@@ -8,7 +8,7 @@ using System.Windows.Documents;
 
 namespace Snake
 {
-    public enum Tablero
+    public enum GridValue
     { 
         Empty,
         Snake,

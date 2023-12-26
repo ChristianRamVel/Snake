@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:Snake"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800"
-        Background="{Staticresource BackgroundColor}"
+        Background="{StaticResource BackgroundColor}"
         Foreground="{StaticResource TextColor}"
         FontFamily="{StaticResource MainFont}"
         WindowStartupLocation="CenterScreen"
-        Icon="Assets/icon.ico"
+        Icon="Assets/Icon.ico"
         >
         
     <Grid>
@@ -26,19 +26,17 @@
                    FontSize="22"
                    Margin="10"
                    />
-        <x:Name="GridBorder"
+        <Border Name="GridBorder"
                 Grid.Row="1"
-                BorderBrush="{StaticResource GridLineColor}"
-                BroderThickness="10"
+                BorderBrush="{StaticResource GrindLineColor}"
+                BorderThickness="10"
                 HorizontalAlignment ="Center"
                 VerticalAlignment ="Center">
-                
+
             <UniformGrid x:Name="GameGrid"
                            Width="400"
                          Height="400"
-                         Background="{StaticResource GridBackGroundColor}">
-                
-            </UniformGrid>
-            />
+                         Background="{StaticResource GridBackGroundColor}"/>
+        </Border>
     </Grid>
 </Window>

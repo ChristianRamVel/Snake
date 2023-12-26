@@ -11,7 +11,7 @@ namespace Snake
     {
         public int Filas { get; }
         public int Columnas { get; }
-        public Tablero[,] Grid { get; }
+        public GridValue[,] Grid { get; }
         public Direccion Dir { get; private set; }
         public int Score { get; private set; }
         public bool GameOver { get; private set; }
@@ -23,7 +23,7 @@ namespace Snake
         {
             Filas = filas;
             Columnas = columnas;
-            Grid = new Tablero[ Filas, Columnas];
+            Grid = new GridValue[ Filas, Columnas];
             Dir = Direccion.Derecha;
 
             anadirSnake();
@@ -35,7 +35,7 @@ namespace Snake
             int r = Filas / 2;
 
             for (int c = 1; c <= 3; c++) {
-                Grid[r, c] = Tablero.Snake;
+                Grid[r, c] = GridValue.Snake;
                 posicionesSerpiente.AddFirst(new Posicion(r, c));
             }
         }
@@ -47,7 +47,7 @@ namespace Snake
             {
                 for (int c = 0; c < Columnas; c++) {
 
-                    if (Grid[f, c] == Tablero.Empty) {
+                    if (Grid[f, c] == GridValue.Empty) {
                         yield return new Posicion(f, c);
                     }
                 }
@@ -64,7 +64,7 @@ namespace Snake
             }
 
             Posicion pos = empty[random.Next(empty.Count)];
-            Grid[pos.Fila, pos.Columna] = Tablero.Food;
+            Grid[pos.Fila, pos.Columna] = GridValue.Food;
         }
 
         public Posicion PosicionCabeza()
@@ -89,13 +89,13 @@ namespace Snake
         private void AnadirCabeza(Posicion pos)
         {
             posicionesSerpiente.AddFirst(pos);
-            Grid[pos.Fila, pos.Columna] = Tablero.Snake;
+            Grid[pos.Fila, pos.Columna] = GridValue.Snake;
         }
 
         private void BorrarCola() {
 
             Posicion cola = posicionesSerpiente.Last.Value;
-            Grid[cola.Fila, cola.Columna] = Tablero.Empty;
+            Grid[cola.Fila, cola.Columna] = GridValue.Empty;
             posicionesSerpiente.RemoveLast();
         }
 
@@ -109,17 +109,17 @@ namespace Snake
             return pos.Fila < 0 || pos.Fila >= 0 || pos.Columna < 0 || pos.Columna >= Columnas;
         }
 
-        private Tablero VaAChocar(Posicion nuevaPosicionCabeza)
+        private GridValue VaAChocar(Posicion nuevaPosicionCabeza)
         {
 
             if (Limites(nuevaPosicionCabeza))
             {
-                return Tablero.Pared;
+                return GridValue.Pared;
             }
 
             if (nuevaPosicionCabeza == PosicionCola())
             {
-                return Tablero.Empty;
+                return GridValue.Empty;
             }
 
             return Grid[nuevaPosicionCabeza.Fila, nuevaPosicionCabeza.Columna];
@@ -129,19 +129,19 @@ namespace Snake
         public void Mover()
         {
             Posicion nuevaPosicionCabeza = PosicionCabeza().Translate(Dir);
-            Tablero hit = VaAChocar(nuevaPosicionCabeza);
+            GridValue hit = VaAChocar(nuevaPosicionCabeza);
 
-            if (hit == Tablero.Pared || hit == Tablero.Snake)
+            if (hit == GridValue.Pared || hit == GridValue.Snake)
             {
                 GameOver = true;
             }
-            else if (hit == Tablero.Empty)
+            else if (hit == GridValue.Empty)
             {
                 BorrarCola();
                 AnadirCabeza(nuevaPosicionCabeza);
 
             }
-            else if (hit == Tablero.Food)
+            else if (hit == GridValue.Food)
             {
                 AnadirCabeza(nuevaPosicionCabeza);
                 Score++;
