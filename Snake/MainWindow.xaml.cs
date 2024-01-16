@@ -81,16 +81,16 @@ namespace Snake
         {
             while (!estadoJuego.GameOver)
             {
-                if (estadoJuego.Score < 15)
+                if (estadoJuego.Score < 10)
                 {
-                    await Task.Delay(300);  // Espera 300 milisegundos entre cada iteración del bucle.
+                    await Task.Delay(200);  // Espera 300 milisegundos entre cada iteración del bucle.
                 }
-                else if (estadoJuego.Score < 30)
+                else if (estadoJuego.Score < 20)
                 {
-                    await Task.Delay(200);
+                    await Task.Delay(150);
                 }
                 else {
-                    await Task.Delay(150);
+                    await Task.Delay(100);
                 }
                 
                 estadoJuego.Mover();  // Realiza el movimiento de la serpiente.

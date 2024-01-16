@@ -139,8 +139,8 @@ namespace Snake
             }
         }
 
-        // Método privado que verifica si una posición está fuera de los límites del tablero.
-        private bool Limites(Posicion pos)
+        // Método privado que verifica si una posición está fuera d e los límites del tablero.
+        public bool Limites(Posicion pos)
         {
             return pos.Fila < 0 || pos.Fila >= Filas || pos.Columna < 0 || pos.Columna >= Columnas;
         }
