@@ -15,6 +15,9 @@ namespace Snake
         public int Score { get; private set; }
         public bool GameOver { get; private set; }
 
+        //usuario que ha iniciado la aprtida en el login
+        public string User { get; set; }
+
         //lista para guardar los cambios de direccion al jugar y asi no permitir que se hagan movimientos que no son correctos para la logica del juego, como por ejemplo
         //estar moviendote a la derecha y directamente intentar mvoerte ala izquierda.
         private readonly LinkedList<Direccion> cambiosDireccion = new LinkedList<Direccion>();
@@ -176,6 +179,16 @@ namespace Snake
             //si el siguiente movimiento es un limite del tablero o la propia snake, se pierde la partida
             if (hit == GridValue.Pared || hit == GridValue.Snake)
             {
+                //antes de perder la partida, se guarda la puntuacion en la base de datos del usuario que ha jugado
+                using (var db = new UserDataContext())
+                {
+                    
+                    var user = db.Users.Where(u => u.Name == User).FirstOrDefault();
+                    user.Puntuacion = Score;
+                    db.SaveChanges();
+                }
+
+                //si se cumple, se cambia el valor de la variable GameOver a true
                 GameOver = true;
             }
             //si no, se borra la ultima posicion de la cola y se añade uno a la nueva posicion que va a tener en el siguiente movimiento
